@@ -40,8 +40,8 @@ public class FileDataController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String deleteDAta(@PathVariable UUID id){
-        return fileDataService.deleteData(id);
+    public void deleteData(@PathVariable UUID id){
+        fileDataService.deleteData(id);
     }
 
 }

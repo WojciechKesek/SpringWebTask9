@@ -32,12 +32,12 @@ public class FileDataService {
         existData.setFileName(data.getFileName());
         existData.setExtension(data.getExtension());
         existData.setSizeInKb(data.getSizeInKb());
-        return "File data created successfully";
+        fileDataRepository.save(existData);
+        return "File data updated successfully";
     }
 
-    public String deleteData(UUID id){
+    public void deleteData(UUID id){
         fileDataRepository.delete(fileDataRepository.findById(id).orElseThrow(() -> new SdaException("Cant delete file data")));
-        return "File data deleted successfully";
     }
 
 }
