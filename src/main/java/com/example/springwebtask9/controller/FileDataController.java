@@ -1,5 +1,6 @@
 package com.example.springwebtask9.controller;
 
+import com.example.springwebtask9.dto.FileDataDto;
 import com.example.springwebtask9.dto.FileDataList;
 import com.example.springwebtask9.model.FileData;
 import com.example.springwebtask9.service.FileDataService;
@@ -29,14 +30,14 @@ public class FileDataController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public String createData(@RequestBody FileData fileData){
-        return fileDataService.createData(fileData);
+    public String createData(@RequestBody FileDataDto fileDataDto){
+        return fileDataService.createData(fileDataDto);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String updateDAta(@PathVariable UUID id, @RequestBody FileData fileData){
-        return fileDataService.updateData(id,fileData);
+    public String updateDAta(@PathVariable UUID id, @RequestBody FileDataDto fileDataDto){
+        return fileDataService.updateData(id,fileDataDto);
     }
 
     @DeleteMapping("/{id}")

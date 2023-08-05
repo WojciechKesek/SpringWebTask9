@@ -28,17 +28,24 @@ public class FileDataService {
     public FileData getData(UUID id){
         return fileDataRepository.findById(id).orElseThrow(()-> new SdaException("Cant find file data"));
     }
-    public String createData(FileData fileData){
-        fileDataRepository.save(fileData);
+    public String createData(FileDataDto dataDto){
+        FileData fileData = FileData
+                .builder()
+                .fileName(dataDto.getFileName())
+                .content(dataDto.getContent())
+                .extension(dataDto.getExtension())
+                .sizeInKb(dataDto.getSizeInKb())
+                .build();
+                fileDataRepository.save(fileData);
         return "File data created successfully";
     }
 
-    public String updateData(UUID id, FileData data){
+    public String updateData(UUID id, FileDataDto dataDto){
         FileData existData = fileDataRepository.findById(id).orElseThrow(() -> new SdaException("Cant find file data to modify"));
-        existData.setContent(data.getContent());
-        existData.setFileName(data.getFileName());
-        existData.setExtension(data.getExtension());
-        existData.setSizeInKb(data.getSizeInKb());
+        existData.setContent(dataDto.getContent());
+        existData.setFileName(dataDto.getFileName());
+        existData.setExtension(dataDto.getExtension());
+        existData.setSizeInKb(dataDto.getSizeInKb());
         fileDataRepository.save(existData);
         return "File data updated successfully";
     }
