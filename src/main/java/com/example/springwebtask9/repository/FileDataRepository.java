@@ -1,6 +1,6 @@
 package com.example.springwebtask9.repository;
 
-import com.example.springwebtask9.entity.FileData;
+import com.example.springwebtask9.model.FileData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

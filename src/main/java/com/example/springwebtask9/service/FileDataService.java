@@ -1,6 +1,9 @@
 package com.example.springwebtask9.service;
 
-import com.example.springwebtask9.entity.FileData;
+import com.example.springwebtask9.dto.FileDataDto;
+import com.example.springwebtask9.dto.FileDataList;
+import com.example.springwebtask9.mappers.FileDataListMapper;
+import com.example.springwebtask9.model.FileData;
 import com.example.springwebtask9.exception.SdaException;
 import com.example.springwebtask9.repository.FileDataRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,14 +11,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class FileDataService {
     private final FileDataRepository fileDataRepository;
 
-    public List<FileData> getAllData(){
-        return fileDataRepository.findAll();
+    public FileDataList getAllData(){
+        List<FileData> filesData = fileDataRepository.findAll();
+        List<FileDataDto> filesDataDtos =  filesData.stream().map(FileDataListMapper::map)
+                .collect(Collectors.toList());
+        return new FileDataList(filesDataDtos);
     }
 
     public FileData getData(UUID id){

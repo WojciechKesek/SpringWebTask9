@@ -1,15 +1,13 @@
-package com.example.springwebtask9.entity;
+package com.example.springwebtask9.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Data
 @Entity
+@Table(name = "files_data")
 public class FileData {
     @Id
     @GeneratedValue
@@ -17,7 +15,7 @@ public class FileData {
     private UUID id;
     private String fileName;
     private String extension;
-    private Long sizeInKb;
+    private Integer sizeInKb;
     private String content;
 
 }

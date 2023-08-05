@@ -1,6 +1,7 @@
 package com.example.springwebtask9.controller;
 
-import com.example.springwebtask9.entity.FileData;
+import com.example.springwebtask9.dto.FileDataList;
+import com.example.springwebtask9.model.FileData;
 import com.example.springwebtask9.service.FileDataService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class FileDataController {
     private final FileDataService fileDataService;
 
     @GetMapping
-    public List<FileData> data(){
+    public FileDataList data(){
        return fileDataService.getAllData();
     }
 
